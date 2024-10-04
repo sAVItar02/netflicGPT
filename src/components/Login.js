@@ -1,8 +1,15 @@
 import React, { useState } from 'react'
 import Header from "./Header"
 import { validateEmail, validatePassword, validatePhone, validateSignIn, validateSignUp, validateUsername } from '../utils/validate';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { auth } from '../utils/firebase';
+import { useDispatch } from 'react-redux';
+import { addUser } from '../utils/userSlice';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [isSignIn, setIsSignIn] = useState(true);
 
   const [errorBorder, setErrorBorder] = useState({
@@ -11,6 +18,8 @@ const Login = () => {
     username: false,
     phone: false
   })
+
+  const [errorMessage, setErrorMessage] = useState("");
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -23,11 +32,56 @@ const Login = () => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    if(isSignIn) {
-      console.log(validateSignIn(email, password));
+    if(isSignIn && validateSignIn(email, password)) {
+      setErrorMessage(validateEmail(email, password));
+      return;
     }
-    else {
-      console.log(validateSignUp(email, password, phone, username));
+    if(!isSignIn && validateSignUp(email, password, phone, username)) {
+      setErrorMessage(validateSignUp(email, password, phone, username));
+      return;
+    }
+
+    setErrorMessage("");
+
+    if(!isSignIn) {
+      // Sign Up
+      createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed up 
+        const user = userCredential.user;
+        updateProfile(user, {
+          displayName: username, phoneNumber: phone
+        }).then(() => {
+          const { uid, email, displayName, phoneNumber } = auth.currentUser;
+          dispatch(addUser({uid, email, displayName, phoneNumber}));
+          navigate("/browse");
+        }).catch((error) => {
+          const errorCode = error?.code;
+          const errorMessage = error?.message;
+          setErrorMessage(errorCode + "-" + errorMessage);
+        });
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        setErrorMessage(errorCode + "-" + errorMessage);
+        // ..
+      });
+    } else {
+      // Sign In
+      signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        console.log(user);
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        setErrorMessage(errorCode + "-" + errorMessage);
+      });
     }
   }
 
@@ -66,6 +120,8 @@ const Login = () => {
             }} type="password" className={`w-full bg-black/50 text-white p-4 border rounded-[4px] outline-none ${errorBorder.password ? "border-red-500" : "border-gray-600"}`} placeholder='Password'/>
 
             {errorBorder.password && <p className='text-red-500 font-semibold text-sm'>Passoword must contain one special character, one number and be between 8 - 20 characters long</p>}
+          
+          {errorMessage && <p className='text-red-500 font-semibold text-sm'>{errorMessage}</p>}
 
           <button className='bg-[rgb(229,9,20)] hover:bg-[#c11119] w-full py-2.5 font-semibold rounded-[4px] duration-100 ease-linear'>{isSignIn ? "Sign In" : "Sign Up"}</button>
 
