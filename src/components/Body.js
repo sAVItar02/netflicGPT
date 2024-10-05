@@ -11,16 +11,19 @@ const Body = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         const { uid, email, displayName, phoneNumber } = user;
         dispatch(addUser({uid, email, displayName, phoneNumber}));
+        console.log("Navigating to browse")
         navigate("/browse");
       } else {
         dispatch(removeUser());
         navigate("/");
       }
     });
+
+    return () => unsubscribe();
   }, []);
   return (
     <div>

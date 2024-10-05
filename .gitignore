@@ -5,6 +5,10 @@
 /.pnp
 .pnp.js
 
+# Files
+src/utils/constants.js
+src/utils/firebase.js
+
 # testing
 /coverage
 

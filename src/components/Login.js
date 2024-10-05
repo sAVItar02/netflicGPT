@@ -54,6 +54,7 @@ const Login = () => {
         }).then(() => {
           const { uid, email, displayName, phoneNumber } = auth.currentUser;
           dispatch(addUser({uid, email, displayName, phoneNumber}));
+          console.log("navigating to browse 2")
           navigate("/browse");
         }).catch((error) => {
           const errorCode = error?.code;
