@@ -26,7 +26,7 @@ const appRouter = createBrowserRouter([
 function App() {
   return (
     <Provider store={appStore}>
-      <div className="font-martel">
+      <div className="font-martel bg-black">
         <RouterProvider router={appRouter}/>
       </div>
     </Provider>

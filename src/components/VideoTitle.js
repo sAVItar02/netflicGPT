@@ -1,6 +1,7 @@
 import React from 'react'
 import useMovieImages from '../hooks/useMovieImages'
 import { useSelector } from 'react-redux';
+import { IMAGE_CDN_URL } from '../utils/constants';
 
 const VideoTitle = ({movieId, title, overview}) => {
     const movieLogo = useSelector(store => store.movie.featuredMovieLogo);
@@ -9,7 +10,7 @@ const VideoTitle = ({movieId, title, overview}) => {
   return (
     <div className='flex flex-col items-start gap-8 absolute top-1/2 -translate-y-1/2 left-20'>
         {
-            movieLogo ? <img className={`w-64 aspect-[${movieLogo.logoAspect}]`} src={"https://image.tmdb.org/t/p/original" + movieLogo.logoPath} alt="" /> : <h1>{title}</h1>
+            movieLogo ? <img className={`w-64 aspect-[${movieLogo.logoAspect}]`} src={IMAGE_CDN_URL + movieLogo.logoPath} alt="" /> : <h1>{title}</h1>
         }
         <p className='max-w-96 text-white font-bold [text-shadow:1px_1px_2px_#000000]'>{overview}</p>
         <div className='flex items-center justify-start gap-2'>

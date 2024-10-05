@@ -8,7 +8,7 @@ const Browse = () => {
   useNowPlaying();
 
   return (
-    <div className='min-h-screen min-w-full bg-gray-500'>
+    <div className='min-h-screen min-w-full bg-black'>
       <Header />
       <div>
         <MainContainer />
