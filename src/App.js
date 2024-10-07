@@ -5,6 +5,7 @@ import appStore from './utils/appStore';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Login from './components/Login';
 import Browse from './components/Browse';
+import MovieInfo from './components/MovieInfo';
 
 const appRouter = createBrowserRouter([
     {
@@ -17,8 +18,14 @@ const appRouter = createBrowserRouter([
           },
           {
             path: "browse",
-            element: <Browse />
-          }
+            element: <Browse />,
+            children: [
+              {
+                path: "movie",
+                element: <MovieInfo />
+              }
+            ]
+          },
         ]
     },
 ])

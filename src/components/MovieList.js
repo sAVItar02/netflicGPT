@@ -23,7 +23,7 @@ const MovieList = ({title, movies}) => {
                 </button>
 
                 <div className='grid grid-flow-col auto-cols-max gap-4'>
-                    { movies.map(movie => <MovieCard key={movie.id} imagePath={movie.poster_path}/>) }
+                    { movies.map(movie => <MovieCard key={movie.id} movieId={movie.id} imagePath={movie.poster_path}/>) }
                 </div>
 
                 <button onClick={scrollRight} className='absolute right-0 top-0 bg-black/30 text-white flex items-center justify-center h-full w-20'>
