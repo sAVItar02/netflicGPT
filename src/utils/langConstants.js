@@ -7,7 +7,7 @@ export const langOptions = [
 export const langText = {
     en: {
         search: "Search",
-        gptSearchPlaceHolder: "What can I recommend you Today?"
+        gptSearchPlaceHolder: "What can I recommend you today?"
     },
     hindi: {
         search: "खोज",
