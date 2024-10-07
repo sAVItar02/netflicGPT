@@ -17,6 +17,7 @@ const MovieInfo = () => {
 
   useEffect(() => {
     dispatch(setStopOverflow(true));
+    console.log(process.env.REACT_APP_TMDB_K);
   }, [])
 
   if(!searchParams.get("m")) return <div className='text-lg font-semibold text-white'>No query parameter provided, please provide movie id in the search query.</div>
@@ -35,13 +36,13 @@ const MovieInfo = () => {
       <div className='p-8 flex items-center justify-between gap-8'>
         <div className='flex flex-col items-start justify-start gap-4 max-w-[60%]'>
           <div className='flex items-center justify-start gap-2 text-gray-500'>
-            <span>{movieToGetDetailsFor.release_date.split("-")[0]}</span>
-            <span>{movieToGetDetailsFor.runtime} mins</span>
-            <span>{movieToGetDetailsFor.status}</span>
+            <span>{movieToGetDetailsFor?.release_date.split("-")[0]}</span>
+            <span>{movieToGetDetailsFor?.runtime} mins</span>
+            <span>{movieToGetDetailsFor?.status}</span>
           </div>
 
-          <h2 className='font-semibold text-4xl '>{movieToGetDetailsFor.title}</h2>
-          <p className='text-gray-400'>{movieToGetDetailsFor.overview}</p>
+          <h2 className='font-semibold text-4xl '>{movieToGetDetailsFor?.title}</h2>
+          <p className='text-gray-400'>{movieToGetDetailsFor?.overview}</p>
 
         </div>
 
