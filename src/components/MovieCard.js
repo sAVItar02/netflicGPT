@@ -15,7 +15,7 @@ const MovieCard = ({imagePath, movieId}) => {
   return (
     <Link to={`/browse/movie?m=${movieId}`} onClick={() => handleMovieCardClick()}>
       <div>
-          <img className='w-48 h-auto object-cover' src={IMAGE_CDN_URL + imagePath} alt="Movie Card" />
+          <img className='w-36 sm:w-48 h-auto object-cover' src={IMAGE_CDN_URL + imagePath} alt="Movie Card" />
       </div>
     </Link>
   )

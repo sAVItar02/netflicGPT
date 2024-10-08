@@ -21,18 +21,18 @@ const Header = () => {
   }
 
   return (
-    <div className={`fixed top-0 left-0 z-20 w-full flex items-center justify-between ${user && "bg-gradient-to-b from-black"}`}>
-      <img src={LOGO} alt="logo"  className={`${ user ? "w-44" : "w-60"} h-auto px-8 py-2`}/>
+    <div className={`fixed top-0 left-0 z-20 w-full flex items-center justify-between sm:bg-transparent bg-black ${user && "sm:bg-gradient-to-b sm:from-black"}`}>
+      <img src={LOGO} alt="logo"  className={`${ user ? "sm:w-44 w-32" : "w-60"} h-auto px-2 sm:px-8 py-2`}/>
       {
         user && 
-        <div className='flex items-center justify-center gap-4'>
-          <button onClick={() => dispatch(toggleGPTView())} className='font-semibold text-white hover:underline'>{gptView ? "Home" : "GPT Search"}</button>
+        <div className='flex items-center justify-center gap-0 sm:gap-4'>
+          <button onClick={() => dispatch(toggleGPTView())} className='font-semibold text-white hover:underline sm:px-0 px-2'>{gptView ? "Home" : "GPT Search"}</button>
           {
             gptView && <LanguageSelect />
           }
           <div className='px-4 flex items-center justify-center gap-2 text-white group relative'>
             <img src={PROFILE_ICON} alt="user icon"  className='rounded-md h-8 w-8'/>
-            <p><svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="currentColor"  className="icon icon-tabler icons-tabler-filled icon-tabler-caret-down"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 9c.852 0 1.297 .986 .783 1.623l-.076 .084l-6 6a1 1 0 0 1 -1.32 .083l-.094 -.083l-6 -6l-.083 -.094l-.054 -.077l-.054 -.096l-.017 -.036l-.027 -.067l-.032 -.108l-.01 -.053l-.01 -.06l-.004 -.057v-.118l.005 -.058l.009 -.06l.01 -.052l.032 -.108l.027 -.067l.07 -.132l.065 -.09l.073 -.081l.094 -.083l.077 -.054l.096 -.054l.036 -.017l.067 -.027l.108 -.032l.053 -.01l.06 -.01l.057 -.004l12.059 -.002z" /></svg></p>
+            <p className='hidden sm:block'><svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="currentColor"  className="icon icon-tabler icons-tabler-filled icon-tabler-caret-down"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 9c.852 0 1.297 .986 .783 1.623l-.076 .084l-6 6a1 1 0 0 1 -1.32 .083l-.094 -.083l-6 -6l-.083 -.094l-.054 -.077l-.054 -.096l-.017 -.036l-.027 -.067l-.032 -.108l-.01 -.053l-.01 -.06l-.004 -.057v-.118l.005 -.058l.009 -.06l.01 -.052l.032 -.108l.027 -.067l.07 -.132l.065 -.09l.073 -.081l.094 -.083l.077 -.054l.096 -.054l.036 -.017l.067 -.027l.108 -.032l.053 -.01l.06 -.01l.057 -.004l12.059 -.002z" /></svg></p>
 
             <div className='absolute top-8 w-60 right-4 p-2 text-white hidden group-hover:block'>
               <ul className='bg-black w-full flex flex-col items-start justify-center gap-4 p-4 rounded-lg'>

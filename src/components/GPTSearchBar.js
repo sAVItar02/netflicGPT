@@ -39,9 +39,9 @@ const GPTSearchBar = () => {
 
 
   return (
-    <div className='text-white w-full flex items-center justify-center gap-4'>
+    <div className='text-white w-full flex items-center justify-center px-2 sm:px-0 sm:gap-4 gap-1'>
         <input value={gptInput} onChange={(e) => setGptInput(e.target.value)} type="text" className='w-[min(500px,90%)] bg-black/80 border border-slate-500 focus-within:border-blue-500 rounded-lg px-4 py-2.5 outline-none' placeholder={langText[langKey].gptSearchPlaceHolder} />
-        <button onClick={getResults} className='bg-[rgb(229,9,20)] hover:bg-[#c11119] px-6 py-2.5 rounded-lg duration-100'>{langText[langKey].search}</button>
+        <button onClick={getResults} className='bg-[rgb(229,9,20)] hover:bg-[#c11119] sm:px-6 px-2 py-2.5 rounded-lg duration-100'>{langText[langKey].search}</button>
     </div>
   )
 }

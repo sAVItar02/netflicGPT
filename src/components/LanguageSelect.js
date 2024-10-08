@@ -12,7 +12,7 @@ const LanguageSelect = () => {
 
   return (
     <div className='text-white'>
-        <select onChange={(e) => handleLangChage(e)}  className='bg-black hover:bg-gray-900 duration-100 border border-slate-500 rounded-lg px-6 py-1 cursor-pointer outline-none'>
+        <select onChange={(e) => handleLangChage(e)}  className='bg-black hover:bg-gray-900 duration-100 border border-slate-500 rounded-lg sm:px-6 px-2 py-1 sm:text-base text-sm cursor-pointer outline-none'>
             {
                 langOptions.map(lang => <option value={lang.identifier} key={lang.identifier}>{lang.name}</option>)
             }

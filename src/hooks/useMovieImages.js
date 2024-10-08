@@ -18,7 +18,7 @@ const useMovieImages = (movieId) => {
     }
 
     useEffect(() => {
-        !featuredMovieLogo && getImageData();
+        !featuredMovieLogo.logoPath && getImageData();
     }, [])
 }
 
